@@ -13,9 +13,12 @@ import nltk
 import numpy
 import string
 import sys
+import os
+import errno
 import play_scraper
 import cStringIO
 import time
+import random
 
 
 class ListingUtils(object):
@@ -91,9 +94,9 @@ class OutputBuilder(object):
         output.write('\n')
 
         # Append meta data
-        output.write('**Generated at**: ' + time.asctime() + '\n')
-        output.write('**Query**: ' + self.query + '\n')
-        output.write('**Filtered application IDs: ' + ", ".join(self.filters) + '\n')
+        output.write('**Generated**: ' + time.asctime() + '\n\n')
+        output.write('**Query**: ' + self.query + '\n\n')
+        output.write('**Filtered application IDs**: ' + ", ".join(self.filters) + '\n\n')
         output.write('\n')
 
         # Append selected applications
@@ -102,8 +105,42 @@ class OutputBuilder(object):
 
         for listing in self.listings:
             output.write('- [' + listing['title'].encode('utf8') + '](https://play.google.com/store/apps/details?id=' 
-            + listing['application_id'] + ')\n')
+            + listing['application_id'] + ') -- Score: ' + str(listing['score']) + '\n')
 
+        output.write('\n')
+
+        # Keywords
+        title_keywords = {}
+        description_keywords = {}
+
+        for listing in self.listings:
+            for keyword, frequency in listing['title_keywords']:
+                if keyword not in title_keywords:
+                    title_keywords[keyword] = 0
+                
+                title_keywords[keyword] += frequency
+            
+            for keyword, frequency in listing['description_keywords']:
+                if keyword not in description_keywords:
+                    description_keywords[keyword] = 0
+                
+                description_keywords[keyword] += frequency
+
+        title_keywords = sorted(title_keywords.iteritems(), key=lambda (k,v): (v,k), reverse=True)
+        description_keywords = sorted(description_keywords.iteritems(), key=lambda (k,v): (v,k), reverse=True)
+
+        output.write('#### TITLE KEYWORDS\n')
+        output.write('\n')
+
+        # Write title keywords
+        [output.write('- **' + keyword + '**: ' + str(frequency) + '\n') for keyword, frequency in title_keywords]
+        output.write('\n')
+
+        output.write('#### DESCRIPTION KEYWORDS\n')
+        output.write('\n')
+
+        # Write description keywords
+        [output.write('- **' + keyword + '**: ' + str(frequency) + '\n') for keyword, frequency in description_keywords]
         output.write('\n')
 
         output_str = output.getvalue()
@@ -111,6 +148,22 @@ class OutputBuilder(object):
 
         return output_str
 
+    @staticmethod
+    def write_to_file(path_dir, data):
+
+        file_path = path_dir.strip().strip('/') + '/report-' + str(int(time.time())) + '.md'
+
+        if not os.path.exists(os.path.dirname(file_path)):
+            try:
+                os.makedirs(os.path.dirname(file_path))
+            except OSError as exc: # Guard against race condition
+                if exc.errno != errno.EEXIST:
+                    raise
+
+        with open(file_path, mode='w') as output_file:
+            output_file.write(data)
+
+        return file_path
 
 class ListingAnalysis(object):
 
@@ -175,7 +228,10 @@ class ListingAnalysis(object):
 
         self.assign_score(listings, average_rating)
 
-        return OutputBuilder(query, application_filter, listings).toMarkDown()
+        output = OutputBuilder(query, application_filter, listings).toMarkDown()
+
+        return OutputBuilder.write_to_file('./reports/', output)
+        
 
     def assign_score(self, listings, average_rating):
 
@@ -183,19 +239,14 @@ class ListingAnalysis(object):
             score = 0
 
             if listing['rating'] >= average_rating:
-                score += 1
+                score += 2
 
             # Add points based on the normalized total reviews; more points for more reviews.
-            score += 1 + listing['normalized_total_reviews'] * 100.0
+            score += listing['normalized_total_reviews'] * 100.0
 
             listing['score'] = score
 
         listings.sort(key=lambda x: x['score'], reverse=True)
-
-        for listing in listings:
-            print 'Score for', listing['application_id'], 'is', listing['score']
-
-        return None
 
 
 if __name__ == "__main__":
