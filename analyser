@@ -14,13 +14,11 @@ import numpy
 import string
 import sys
 import play_scraper
+import cStringIO
+import time
 
 
 class ListingUtils(object):
-
-    def __init__(self):
-
-        return None
 
     def search_listings(self, query):
         """
@@ -78,9 +76,40 @@ class ListingUtils(object):
 
         return total_norm
 
-    def rating(self, app):
+class OutputBuilder(object):
 
-        app['histogram']
+    def __init__(self, query, filters, listings):
+        self.query = query
+        self.filters = filters
+        self.listings = listings
+
+    def toMarkDown(self):
+
+        output = cStringIO.StringIO()
+
+        output.write('## Listing Analysis\n')
+        output.write('\n')
+
+        # Append meta data
+        output.write('**Generated at**: ' + time.asctime() + '\n')
+        output.write('**Query**: ' + self.query + '\n')
+        output.write('**Filtered application IDs: ' + ", ".join(self.filters) + '\n')
+        output.write('\n')
+
+        # Append selected applications
+        output.write('#### APPLICATIONS\n')
+        output.write('\n')
+
+        for listing in self.listings:
+            output.write('- [' + listing['title'].encode('utf8') + '](https://play.google.com/store/apps/details?id=' 
+            + listing['application_id'] + ')\n')
+
+        output.write('\n')
+
+        output_str = output.getvalue()
+        output.close()
+
+        return output_str
 
 
 class ListingAnalysis(object):
@@ -146,7 +175,7 @@ class ListingAnalysis(object):
 
         self.assign_score(listings, average_rating)
 
-        return None
+        return OutputBuilder(query, application_filter, listings).toMarkDown()
 
     def assign_score(self, listings, average_rating):
 
@@ -178,4 +207,6 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    ListingAnalysis().query(args.query, args.filters)
+    filters = [id.strip() for id in args.filters.split(',')]
+
+    print ListingAnalysis().query(args.query, filters)
