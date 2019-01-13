@@ -7,12 +7,14 @@ from future_builtins import map
 
 from collections import Counter
 from itertools import chain
+import argparse
 import json
 import nltk
 import numpy
 import string
 import sys
 import play_scraper
+
 
 class ListingUtils(object):
 
@@ -55,33 +57,42 @@ class ListingUtils(object):
             'histogram': listing_data['histogram'],
             'installs': listing_data['installs']
         }
-    
+
         return listing_json
 
     def keywords(self, description):
         tokens = [token for token in nltk.word_tokenize(description)]
         # Remove punctuation
-        stripped = [token.encode('utf8').lower().translate(None, string.punctuation) for token in tokens]
+        stripped = [token.encode('utf8').lower().translate(
+            None, string.punctuation) for token in tokens]
         words = [word for word in stripped if word.isalpha()]
         # Filter out stop words
         stop_words = set(nltk.corpus.stopwords.words('english'))
 
         words = [w for w in words if not w in stop_words]
-    
+
         return Counter(words).most_common(10)
+
+    def normalize_review_total(self, total, minimum, maximum):
+        total_norm = (total - minimum) / (maximum - minimum)
+
+        return total_norm
 
     def rating(self, app):
 
         app['histogram']
-    
+
+
 class ListingAnalysis(object):
+
+    MIN_RATING = 3.9
 
     def __init__(self):
         self._listing_utils = ListingUtils()
 
         return None
 
-    def query(self, query):
+    def query(self, query, application_filter=[]):
 
         # Here we want to map a listing to a value and a collection of keywords.
         # This data will then be analysed to suggested keywords which other apps
@@ -93,45 +104,78 @@ class ListingAnalysis(object):
         # Lets filter out the listings which have a low rating -- these are not
         # useful. This hueristic can be adjusted to, for example, filter on
         # short descriptions.
-        listings = [l for l in listings if l['rating'] >= 4.1]
+        listings = [l for l in listings if (l['rating'] >= self.MIN_RATING and l['application_id'] not in application_filter)]
 
         print 'Filtered listing size: ' + str(len(listings))
 
         # Now we want to query each of these listings and fetch their more
         # "full" details.
-        listings = [self._listing_utils.fetch_listing(l['application_id'], l['summary']) for l in listings]
+        listings = [self._listing_utils.fetch_listing(
+            l['application_id'], l['summary']) for l in listings]
 
         print 'Finding keywords.'
 
         for listing in listings:
-            listing['title_keywords'] = self._listing_utils.keywords(listing['title'])
-            listing['description_keywords'] = self._listing_utils.keywords(listing['description'])
+            listing['title_keywords'] = self._listing_utils.keywords(
+                listing['title'])
+            listing['description_keywords'] = self._listing_utils.keywords(
+                listing['description'])
 
         print 'Assigning values.'
 
-        # Compute average installs so we can normalize -- +1 if above or equal,
-        # -1 if below.
-        total_histogram = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
+        # Compute average installs so we can normalize -- +1 if above or equal
+        total_histogram = {1: 0.0, 2: 0.0, 3: 0.0, 4: 0.0, 5: 0.0}
         for listing in listings:
             for key in listing['histogram'].keys():
                 if total_histogram.has_key(key):
                     total_histogram[key] += listing['histogram'][key]
 
         total_ratings = sum(total_histogram.values())
-        average_rating = numpy.dot(total_histogram.keys(), total_histogram.values()) / total_ratings
+        average_rating = numpy.dot(
+            total_histogram.keys(), total_histogram.values()) / total_ratings
+
+        reviews = [l['total_reviews'] + 0.0 for l in listings]
+        min_number_reviews = min(reviews)
+        max_number_reviews = max(reviews)
+
+        for listing in listings:
+            listing['normalized_total_reviews'] = self._listing_utils.normalize_review_total(
+                listing['total_reviews'], min_number_reviews, max_number_reviews)
 
         print 'Average rating is', average_rating
 
+        self.assign_score(listings, average_rating)
+
         return None
 
-    def assign_value(self, listings):
+    def assign_score(self, listings, average_rating):
+
+        for listing in listings:
+            score = 0
+
+            if listing['rating'] >= average_rating:
+                score += 1
+
+            # Add points based on the normalized total reviews; more points for more reviews.
+            score += 1 + listing['normalized_total_reviews'] * 100.0
+
+            listing['score'] = score
+
+        listings.sort(key=lambda x: x['score'], reverse=True)
+
+        for listing in listings:
+            print 'Score for', listing['application_id'], 'is', listing['score']
 
         return None
 
 
 if __name__ == "__main__":
-    if (len(sys.argv) != 2):
-        print 'Invalid args -- Try \'./main.py "Facebook"\''
-        exit()
+    parser = argparse.ArgumentParser(
+        description='Query the play store listings.',
+        epilog='Ending stuff.')
+    parser.add_argument('-q', '--query', type=str, help='Phrase that is being queried.')
+    parser.add_argument('-f', '--filters', type=str, nargs='?', help='Application id\'s that you\'d like to filter from the results (comma seperated).')
 
-    ListingAnalysis().query(sys.argv[1])
+    args = parser.parse_args()
+
+    ListingAnalysis().query(args.query, args.filters)
