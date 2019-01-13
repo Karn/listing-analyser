@@ -1,150 +1,191 @@
 ## Listing Analysis
 
-**Generated**: Sat Jan 12 20:50:10 2019
+**Generated**: Sat Jan 12 21:01:49 2019
 
-**Query**: insights instagram
+**Query**: facebook tools
 
-**Filtered application IDs**: com.instagram.android
+**Filtered application IDs**: com.facebook.katana, com.facebook.lite
 
 
 #### APPLICATIONS
 
-- [Followers Insight for Instagram](https://play.google.com/store/apps/details?id=com.skyfireapps.followersinsightapp) -- Score: 100.0
-- [FollowMeter for Instagram](https://play.google.com/store/apps/details?id=com.beakerapps.instameter2) -- Score: 37.6537985403
-- [Follower Analyzer (Instagram)](https://play.google.com/store/apps/details?id=com.maximolab.followeranalyzer) -- Score: 13.4673917171
-- [FollowersTop Comments Insights for IG](https://play.google.com/store/apps/details?id=com.ailin.zoomer.profile) -- Score: 9.93922639346
-- [Unfollowers & Ghost Followers (Follower Insight)](https://play.google.com/store/apps/details?id=com.unfollowers.ghost.followers) -- Score: 9.84922798836
-- [Followers Stats for Instagram & Report+ & tracker](https://play.google.com/store/apps/details?id=com.followers.reports) -- Score: 8.93253537279
-- [Follower tracker for Instagram](https://play.google.com/store/apps/details?id=com.igfollower.insights) -- Score: 6.10394246178
-- [Analytics for Instagram](https://play.google.com/store/apps/details?id=com.analyticsinst) -- Score: 2.80922616561
-- [Insight For Instagram - Get Fast Followers & Likes](https://play.google.com/store/apps/details?id=com.analyticsforinstagram) -- Score: 2.26429911369
-- [Planoly: Instagram Posts Scheduler & Feed Planner](https://play.google.com/store/apps/details?id=com.planoly.android) -- Score: 2.25755492941
-- [Followers Insight for Instagram, tracker, analyzer](https://play.google.com/store/apps/details?id=com.yy.adam.insight) -- Score: 2.16442746584
-- [Iconosquare](https://play.google.com/store/apps/details?id=com.tripnity.iconosquare) -- Score: 0.519864204938
-- [Insights for Instagram - ✔Followers ✔Stories](https://play.google.com/store/apps/details?id=io.karn.insights) -- Score: 0.400625811694
-- [Follow Insights - Get More Real likes ,followers](https://play.google.com/store/apps/details?id=com.InstaFollowers.Instaapp) -- Score: 0.104428529115
-- [Unfollowers and Followers Insights for Instagram](https://play.google.com/store/apps/details?id=com.azde.pagesmanagerforinstagram) -- Score: 0.0254425870934
-- [Followers Insight for Instagram, tracker, analyzer](https://play.google.com/store/apps/details?id=com.torv.adam.insight) -- Score: 0.0
+- [All-In-One Toolbox: Cleaner & Speed Booster](https://play.google.com/store/apps/details?id=imoblife.toolbox.full) -- Score: 102.0
+- [Canva: Graphic design & poster, invitation maker](https://play.google.com/store/apps/details?id=com.canva.editor) -- Score: 99.7694427046
+- [Buffer: Manage Twitter, Facebook, Social Media](https://play.google.com/store/apps/details?id=org.buffer.android) -- Score: 6.72461795235
+- [Facebook Ads Manager](https://play.google.com/store/apps/details?id=com.facebook.adsmanager) -- Score: 4.00964487037
+- [Facebook Creator](https://play.google.com/store/apps/details?id=com.facebook.creatorapp) -- Score: 2.68365621685
+- [Social Post Maker for Facebook, Instagram & More](https://play.google.com/store/apps/details?id=com.desygner.socialposts) -- Score: 2.55229916476
+- [Online Ad Maker for Google & Facebook Ads](https://play.google.com/store/apps/details?id=com.desygner.ads) -- Score: 2.03692855772
+- [Likes/Followers/Liker Friends Profile for Facebook](https://play.google.com/store/apps/details?id=com.giamma.like_counter) -- Score: 1.41287937757
+- [Secret Facebook Tips and Tricks - Messenger Tricks](https://play.google.com/store/apps/details?id=com.idroid.facebooktips) -- Score: 0.184099721588
+- [Facebook Analytics](https://play.google.com/store/apps/details?id=com.facebook.analytics) -- Score: 0.100467399686
+- [SocialPilot: Social Media Tool](https://play.google.com/store/apps/details?id=socialpilot.co) -- Score: 0.0655300877234
+- [Profile detective - view my profile followers.](https://play.google.com/store/apps/details?id=com.profile.detective) -- Score: 0.0619096408879
+- [Guide for Facebook Marketing](https://play.google.com/store/apps/details?id=com.wanapps.facebookmktg) -- Score: 0.0334891332288
+- [PAR Toolkit](https://play.google.com/store/apps/details?id=com.parinc.toolkit) -- Score: 0.0217226810133
+- [Text Styler for Facebook](https://play.google.com/store/apps/details?id=com.sweetedge.fbtextstyler) -- Score: 0.00687884898754
+- [Tutorial Facebook-Ads Marketing](https://play.google.com/store/apps/details?id=com.andromo.dev624552.app675395) -- Score: 0.0
 
 #### TITLE KEYWORDS
 
-- **instagram**: 12
-- **followers**: 8
-- **insight**: 5
-- **tracker**: 4
-- **insights**: 4
-- **follower**: 3
-- **analyzer**: 3
-- **unfollowers**: 2
-- **likes**: 2
-- **get**: 2
-- **stats**: 1
-- **scheduler**: 1
-- **report**: 1
-- **real**: 1
-- **posts**: 1
-- **planoly**: 1
-- **planner**: 1
-- **ig**: 1
-- **iconosquare**: 1
-- **ghost**: 1
-- **followmeter**: 1
-- **followerstop**: 1
-- **follow**: 1
-- **feed**: 1
-- **fast**: 1
-- **comments**: 1
+- **facebook**: 10
+- **social**: 3
+- **profile**: 3
+- **maker**: 3
+- **tricks**: 2
+- **media**: 2
+- **marketing**: 2
+- **ads**: 2
+- **view**: 1
+- **twitter**: 1
+- **tutorial**: 1
+- **toolkit**: 1
+- **toolbox**: 1
+- **tool**: 1
+- **tips**: 1
+- **text**: 1
+- **styler**: 1
+- **speed**: 1
+- **socialpilot**: 1
+- **secret**: 1
+- **poster**: 1
+- **post**: 1
+- **par**: 1
+- **online**: 1
+- **messenger**: 1
+- **manager**: 1
+- **manage**: 1
+- **likesfollowersliker**: 1
+- **invitation**: 1
+- **instagram**: 1
+- **guide**: 1
+- **graphic**: 1
+- **google**: 1
+- **friends**: 1
+- **followers**: 1
+- **facebookads**: 1
+- **detective**: 1
+- **design**: 1
+- **creator**: 1
+- **cleaner**: 1
+- **canva**: 1
+- **buffer**: 1
+- **booster**: 1
 - **analytics**: 1
+- **allinone**: 1
+- **ad**: 1
 
 #### DESCRIPTION KEYWORDS
 
-- **instagram**: 70
-- **followers**: 65
-- **app**: 32
-- **follow**: 28
-- **get**: 19
-- **post**: 18
-- **account**: 18
-- **likes**: 12
-- **media**: 11
-- **view**: 10
-- **back**: 10
-- **posts**: 9
-- **photos**: 8
-- **find**: 8
-- **comments**: 8
-- **unfollowers**: 7
-- **manage**: 7
-- **planoly**: 6
-- **new**: 6
-- **insights**: 6
-- **followmeter**: 6
-- **directly**: 6
-- **also**: 6
-- **top**: 5
-- **tags**: 5
-- **liked**: 5
-- **insight**: 5
-- **iconosquare**: 5
-- **ghost**: 5
-- **followed**: 5
-- **best**: 5
-- **web**: 4
-- **upload**: 4
-- **tagged**: 4
-- **profile**: 4
-- **multiple**: 4
-- **location**: 4
-- **hashtag**: 4
-- **fast**: 4
-- **end**: 4
-- **accounts**: 4
-- **videos**: 3
-- **see**: 3
-- **schedule**: 3
-- **official**: 3
-- **number**: 3
-- **nt**: 3
-- **last**: 3
-- **exclusive**: 3
-- **etc**: 3
-- **days**: 3
-- **day**: 3
-- **commented**: 3
-- **application**: 3
-- **always**: 3
-- **way**: 2
-- **use**: 2
-- **unfollowed**: 2
-- **unfollow**: 2
-- **tracker**: 2
-- **track**: 2
-- **relationships**: 2
-- **related**: 2
-- **real**: 2
-- **read**: 2
-- **promote**: 2
-- **popularity**: 2
-- **popular**: 2
-- **performance**: 2
-- **one**: 2
-- **management**: 2
-- **lot**: 2
-- **like**: 2
-- **know**: 2
-- **info**: 2
-- **follower**: 2
-- **features**: 2
-- **engagement**: 2
-- **easily**: 2
-- **download**: 2
-- **dialogs**: 2
-- **content**: 2
-- **computer**: 2
-- **classify**: 2
-- **check**: 2
+- **facebook**: 95
+- **ads**: 47
+- **social**: 39
+- **app**: 31
+- **create**: 30
+- **maker**: 25
+- **posts**: 24
+- **media**: 18
+- **instagram**: 18
+- **marketing**: 17
+- **like**: 15
+- **free**: 14
+- **photo**: 13
+- **design**: 13
+- **ad**: 13
+- **resize**: 12
+- **images**: 12
+- **toolbox**: 11
+- **cleaner**: 11
+- **tutorial**: 10
+- **socialpilot**: 10
+- **buffer**: 10
+- **features**: 9
+- **invitation**: 8
+- **content**: 8
+- **canva**: 8
+- **allinone**: 8
+- **poster**: 7
+- **post**: 7
+- **plan**: 7
+- **photos**: 7
+- **android**: 7
+- **par**: 6
+- **apps**: 6
+- **yang**: 5
+- **text**: 5
+- **size**: 5
+- **sharing**: 5
+- **messenger**: 5
+- **manager**: 5
+- **insights**: 5
+- **google**: 5
+- **get**: 5
+- **discover**: 5
+- **accounts**: 5
+- **videos**: 4
+- **twitter**: 4
+- **tricks**: 4
+- **tools**: 4
+- **tool**: 4
+- **space**: 4
+- **share**: 4
+- **scheduling**: 4
+- **schedule**: 4
+- **pro**: 4
+- **people**: 4
+- **network**: 4
+- **many**: 4
+- **conversion**: 4
+- **anda**: 4
+- **account**: 4
+- **view**: 3
+- **tips**: 3
+- **strategy**: 3
+- **stats**: 3
+- **profile**: 3
+- **private**: 3
+- **page**: 3
+- **metrics**: 3
+- **hide**: 3
+- **got**: 3
+- **good**: 3
+- **files**: 3
+- **fans**: 3
+- **dalam**: 3
+- **client**: 3
+- **chart**: 3
+- **automated**: 3
+- **aplikasi**: 3
+- **web**: 2
+- **valuable**: 2
+- **using**: 2
+- **top**: 2
+- **styler**: 2
+- **still**: 2
+- **results**: 2
+- **personal**: 2
+- **pariconnect**: 2
+- **occur**: 2
+- **movable**: 2
+- **mobile**: 2
+- **list**: 2
+- **link**: 2
+- **hackers**: 2
+- **friends**: 2
+- **facts**: 2
+- **enjoy**: 2
+- **device**: 2
+- **decorated**: 2
+- **creator**: 2
+- **calculator**: 2
 - **analytics**: 2
-- **analysis**: 2
-- **allows**: 2
-- **comment**: 1
+- **access**: 2
+- **simply**: 1
+- **shop**: 1
+- **see**: 1
+- **perfect**: 1
+- **gone**: 1
+- **follow**: 1
+- **detailed**: 1
+- **among**: 1
 
