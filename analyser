@@ -62,6 +62,9 @@ class ListingUtils(object):
         return listing_json
 
     def keywords(self, description):
+        if description is None:
+            return []
+
         tokens = [token for token in nltk.word_tokenize(description)]
         # Remove punctuation
         stripped = [token.encode('utf8').lower().translate(
@@ -209,14 +212,14 @@ class ListingAnalysis(object):
         total_histogram = {1: 0.0, 2: 0.0, 3: 0.0, 4: 0.0, 5: 0.0}
         for listing in listings:
             for key in listing['histogram'].keys():
-                if total_histogram.has_key(key):
+                if total_histogram.has_key(key) and listing['histogram'][key] is not None:
                     total_histogram[key] += listing['histogram'][key]
 
         total_ratings = sum(total_histogram.values())
         average_rating = numpy.dot(
             total_histogram.keys(), total_histogram.values()) / total_ratings
 
-        reviews = [l['total_reviews'] + 0.0 for l in listings]
+        reviews = [listing['total_reviews'] + 0.0 for listing in listings]
         min_number_reviews = min(reviews)
         max_number_reviews = max(reviews)
 
